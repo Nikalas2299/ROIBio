@@ -13,14 +13,16 @@ body {
     display: block;
     position: fixed;
     height: 100%; 
-    width: 480px;
+    width: 250px;
     background-color: #434424; 
+    top: 25%;
     left: 0;
     padding-top: 150px;
     margin-left: 80px;
 }
 
 .sidebar-login-text {
+    display: flex;
     color: #D5D5B1;
     text-align: center;
     font-size: 1.4rem;
@@ -34,9 +36,11 @@ body {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    width: 100%;
+    align-items: center;
 }
 
-/* Transformámos em 'button' no HTML, por isso limpamos a borda padrão */
+
 .btn {
     display: block;
     width: 100%;
@@ -93,44 +97,9 @@ body {
     max-width: 250px;
 }
 
-/* =================================================== */
-/* O TEU NOVO FORMULÁRIO (CSS Simples e Personalizado) */
-/* =================================================== */
-.formulario-login {
-    padding: 60px;
-    max-width: 400px;
-}
-
-.formulario-login h2 {
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-}
-
-.formulario-login form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.formulario-login input {
-    padding: 15px 20px;
-    border: none;
-    border-radius: 30px; /* Deixa os inputs em formato de pastilha */
-    font-size: 1rem;
-}
-
-.btn-enviar {
-    background-color: #434424;
-    color: white;
-    border: none;
-    padding: 15px;
+active-login .Quadro-login{
+    flex-grow: 1;
+    height: 90vh;            
+    margin: 5vh auto;        
     border-radius: 30px;
-    font-weight: bold;
-    font-size: 1.1rem;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-.btn-enviar:hover {
-    background-color: #2e2f18;
 }
