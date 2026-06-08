@@ -14,7 +14,7 @@
         <div class="conteudo-painel" id="botoes-login">
         <aside class="sidebar-login">
             <div class="sidebar-login-content">
-                <img class="logo-login" src="img/logo.png" alt="Logo RóiBIO">
+                <img class="logo-menu-login" src="img/logo.png" alt="Logo RóiBIO">
                 <p class="sidebar-login-text">Encontra tudo o que precisas para o teu roedor.</p>
                 
                 <div class="buttons-login">
@@ -34,8 +34,26 @@
                
 
                 <div class="conteudo-painel d-none" id="painel-formulario">
-                <h2 class="text-center mb-4 font-weight-bold" style="color: #434424;">RóiBIO</h2>
-                <p class="text-center">Formulário Centrado</p>
+                <img src="img/logoPreto.png" alt="Logo RóiBIO">
+
+                <form class="d-flex flex-column align-items-center mx-auto" style="max-width: 50%;"> 
+
+                <div class="w-100 mb-3">
+                <label for="InputEmailLogin" class="form-label">Email</label>
+                <input type="email" class="form-control caixapersonalizada" id="InputEmailLogin">
+                </div>
+
+                <div class="w-100 mb-3">
+                <label for="InputPasswordLogin" class="form-label">Palavra-passe</label>
+                <input type="password" class="form-control caixapersonalizada" id="InputPasswordLogin">
+                </div>
+
+                <div class="mb-3">
+                <a href="#" style="font-weight: bold; text-decoration: underline; color: black;">Esqueceu-se da Palavra-passe</a>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+</form>
             </div>
             
         </main>
@@ -49,7 +67,7 @@
                 document.getElementById('painel-inicial').classList.add('d-none');
                 document.getElementById('botoes-login').classList.add('d-none');
                 document.getElementById('painel-formulario').classList.remove('d-none');
-            }, 400); 
+            }, 0); 
         }
     </script>
 
