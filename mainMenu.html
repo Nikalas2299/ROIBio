@@ -36,7 +36,7 @@
                 <div class="conteudo-painel d-none" id="painel-formulario">
                 <img src="img/logoPreto.png" alt="Logo RóiBIO">
 
-                <form class="d-flex flex-column align-items-center mx-auto" style="max-width: 50%;"> 
+                <form class="d-flex flex-column align-items-center mx-auto" style="max-width: 50%;" onsubmit="validarLogin(event)"> 
 
                 <div class="w-100 mb-3">
                 <label for="InputEmailLogin" class="form-label">Email</label>
@@ -69,6 +69,52 @@
                 document.getElementById('painel-formulario').classList.remove('d-none');
             }, 0); 
         }
+
+
+
+        function validarLogin(event) {
+
+    event.preventDefault();
+
+
+    const inputEL = document.getElementById('InputEmailLogin').value;
+    const inputPL = document.getElementById('InputPasswordLogin').value;
+
+
+    fetch('users.txt')
+        .then(resposta => resposta.text()) 
+        .then(texto => {
+           
+            const linhas = texto.split('\n');
+            let loginSucesso = false;
+
+  
+            for (let i = 0; i < linhas.length; i++) {
+     
+                const dados = linhas[i].trim().split(',');
+                const emailDoFicheiro = dados[0];
+                const passwordDoFicheiro = dados[1];
+
+            
+                if (inputEL === emailDoFicheiro && inputPL === passwordDoFicheiro) {
+                    loginSucesso = true;
+                    break;
+                }
+            }
+
+            // 5. Dá o resultado ao utilizador
+            if (loginSucesso) {
+                alert('Login efetuado com sucesso! Bem-vindo à RóiBIO.');
+                window.location.href = 'coconut.html';
+            } else {
+                alert('Email ou Palavra-passe incorretos. Tente novamente.');
+            }
+        })
+        .catch(erro => {
+            console.error('Erro ao ler o ficheiro de utilizadores:', erro);
+            alert('Erro no sistema de autenticação.');
+        });
+}
     </script>
 
 </body>
