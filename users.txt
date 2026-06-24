@@ -1,1 +1,2 @@
 admin@roibio.pt,password123
+teste@teste.com,teste123
