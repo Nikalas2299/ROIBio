@@ -10,21 +10,101 @@
 </head>
 <body>
 
-    <div class="login-container" id="login">  
+        <aside class="sidebar">
+                <div class="btn-voltar mb-5 ms-3  position-absolute bottom-0 start-0" style="width: 250px;">
+                    <button class="btn" onclick="document.location='mainmenu.html'">Voltar</button>
+                </div>
+        </aside>
+
+    <div class="register-container" id="registo">  
 
         <main class="Quadro-registo">
 
                 <div class="conteudo-painel" id="painel-formulario">
                 <img src="img/logoPreto.png" alt="Logo RóiBIO">
+                
 
-                <form class="d-flex flex-column align-items-center mx-auto" style="max-width: 50%;" onsubmit="validarLogin(event)"> 
+                <form class="d-flex flex-column align-items-start ms-5" style="max-width: 50%;" onsubmit="validarRegisto(event)"> 
+                
+                    <h1 class="text-start" style="color:black; font-weight: bold;">REGISTO</h1>
 
-                <div class="w-100 mb-3">
-                <label for="InputEmailLogin" class="form-label">Email</label>
-                <input type="email" class="form-control caixapersonalizada" id="InputEmailLogin">
-                </div>
+                <div class="w-100 mt-5 mb-5">
+                <input type="text" class="form-control caixapersonalizada" id="InputNomeRegisto" placeholder="Nome" required></div>
+
+                <div class="w-100 mb-5">
+                <input type="text" class="form-control caixapersonalizada" id="InputSobrenomeRegisto" placeholder="Sobrenome" required></div>
+                
+                <div class="w-100 mb-5">
+                <input type="email" class="form-control caixapersonalizada" id="InputEmailRegisto" placeholder="Email" required></div>
+
+                <div class="w-100 mb-5">
+                <input type="password" class="form-control caixapersonalizada" id="InputPasswordRegisto" placeholder="Palavra-passe" required></div>
+
+                <div class="w-100 mb-5">
+                <input type="password" class="form-control caixapersonalizada" id="InputConfPasswordRegisto" placeholder="Confirmar Palavra-passe" required></div>
+
+                <button type="submit" class="btn btn-submit rounded-5 mt-5" style="background-color:#434424">Iniciar Sessão</button>
+                </form>
+                
 
 
 
 </body>
+<script>
+function validarRegisto(event) { 
+    event.preventDefault();
+
+    // Capturar os valores inseridos pelo utilizador
+    const emailInserido = document.getElementById('InputEmailRegisto').value.trim();
+    const passwordInserida = document.getElementById('InputPasswordRegisto').value;
+    const confPasswordInserida = document.getElementById('InputConfPasswordRegisto').value;
+
+    // 1ª Validação: Verificar se as palavras-passe são idênticas
+    if (passwordInserida !== confPasswordInserida) {
+        alert('As palavras-passe não coincidem. Tente novamente.');
+        return; // Para a execução do código imediatamente
+    }
+
+    // 2ª Validação: Ler o ficheiro users.txt para validar o email
+    fetch('users.txt')
+        .then(resposta => {
+            if (!resposta.ok) {
+                throw new Error('Não foi possível ler a base de dados de utilizadores.');
+            }
+            return resposta.text();
+        })
+        .then(texto => {
+            const linhas = texto.split('\n');
+            let emailJaExiste = false;
+
+            // Percorrer todas as linhas do ficheiro local
+            for (let i = 0; i < linhas.length; i++) {
+                if (linhas[i].trim() === "") continue; // Ignora linhas vazias
+
+                const dados = linhas[i].split(',');
+                const emailDoFicheiro = dados[0].trim();
+
+                if (emailInserido === emailDoFicheiro) {
+                    emailJaExiste = true;
+                    break;
+                }
+            }
+
+            if (emailJaExiste) {
+                alert('Este email já se encontra registado no sistema!');
+            } else {
+                // Tudo correto e o email é novo!
+                alert('Registo efetuado com sucesso!');
+                
+         
+            
+                window.location.href = 'coconut.html'; 
+            }
+        })
+        .catch(erro => {
+            console.error('Erro na validação do registo:', erro);
+            alert('Erro ao ligar ao sistema de autenticação local.');
+        });
+}
+</script>
 </html>

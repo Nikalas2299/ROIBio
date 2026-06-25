@@ -13,18 +13,20 @@
 
     <div class="Menu-login" id="Menulogin">  
 
-        <div class="conteudo-painel" id="botoes-login">
+        <div class="conteudo-painel" id="btns-login">
         <aside class="sidebar-login">
             <div class="sidebar-login-content">
                 <img class="logo-menu-login" src="img/logo.png" alt="Logo RóiBIO">
                 <p class="sidebar-login-text">Encontra tudo o que precisas para o teu roedor.</p>
                 
-                <div class="buttons-login">
+                <div class="btns-login">
                     <button class="btn" onclick="ativarLogin()">Log-in</button>
                     <button class="btn" onclick="document.location='registo.html'">Registar</button>
-                </div>
+                    </div>
             </div>
         </div>
+         <div class="btn-voltar d-none mb-5 ms-3  position-absolute bottom-0 start-0" style="width: 250px;" id="btn-voltar">
+                    <button class="btn" onclick="document.location='mainmenu.html'">Voltar</button></div>
         </aside>
 
         <main class="Quadro-login">
@@ -38,8 +40,9 @@
                 <div class="conteudo-painel d-none" id="painel-formulario">
                 <img src="img/logoPreto.png" alt="Logo RóiBIO">
 
+                <h1 class="text-start ms-5" style=" color:black; font-weight: bold;">LOGIN</h1>
                 <form class="d-flex flex-column align-items-center mx-auto" style="max-width: 50%;" onsubmit="validarLogin(event)"> 
-
+                    
                 <div class="w-100 mb-3">
                 <label for="InputEmailLogin" class="form-label">Email</label>
                 <input type="email" class="form-control caixapersonalizada" id="InputEmailLogin">
@@ -65,8 +68,24 @@
             </div>
             
         </main>
+    </div>
     </div>  
+    </body>
     <script>
+
+              function ativarLogin() {
+            
+            document.getElementById('Menulogin').classList.add('active-login');
+            
+            setTimeout(() => {
+                document.getElementById('painel-inicial').classList.add('d-none');
+                document.getElementById('btns-login').classList.add('d-none');
+                document.getElementById('painel-formulario').classList.remove('d-none');
+                document.getElementById('btn-voltar').classList.remove('d-none');
+            }, 0); 
+        }
+
+
 
         window.onload = function () {
 
@@ -89,18 +108,7 @@ function tratarRespostaGoogle(resposta) {
     alert(`Bem-vindo à RóiBIO, ${payload.name}!`);
     window.location.href = 'coconut.html';
 }
-        function ativarLogin() {
-            
-            document.getElementById('Menulogin').classList.add('active-login');
-            
-            setTimeout(() => {
-                document.getElementById('painel-inicial').classList.add('d-none');
-                document.getElementById('botoes-login').classList.add('d-none');
-                document.getElementById('painel-formulario').classList.remove('d-none');
-            }, 0); 
-        }
-
-
+  
 
         function validarLogin(event) {
 
@@ -169,5 +177,5 @@ function tratarRespostaGoogle(resposta) {
 
     <script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/pt_PT/appleid.auth.js"></script>
 
-</body>
+
 </html>

@@ -32,7 +32,7 @@ body {
     max-width: 250px;
 }
 
-.buttons-login {
+.btns-login {
     display: flex;
     flex-direction: column;
     gap: 15px;
