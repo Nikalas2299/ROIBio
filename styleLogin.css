@@ -1,5 +1,6 @@
 body {
-    background-color: #434424;
+    background-image: url(img/Fundos/Sidebar/sidebar-tamanho-grande.png);
+    background-size: cover;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -14,16 +15,17 @@ body {
     position: fixed;
     height: 100%; 
     width: 250px;
-    background-color: #434424; 
     top: 25%;
     left: 0;
     padding-top: 150px;
     margin-left: 80px;
+    
 }
 
 .sidebar-login-text {
     display: flex;
-    color: #D5D5B1;
+    color: #fffff1;
+    text-shadow: -2px -2px 0 #3a3a27, 2px -2px 0 #3a3a27, -2px 2px 0 #3a3a27, 2px 2px 0 #3a3a27;
     text-align: center;
     font-size: 1.4rem;
     font-weight: bold;
@@ -74,12 +76,28 @@ body {
 .Quadro-login {
     display: block; 
     position: absolute;
-    background-image: linear-gradient(to bottom, #DBDAB7, #AEB25E);
+    background-image: url(img/Fundos/Quadrado/Quadrado-tamanho-grande.png);
     width: 75%;
     height: 95vh;
     border-radius: 30px 0 0 0;
     right: 0;
     bottom: 0;
+}
+
+.Quadro-login-page{
+    display: block; 
+    position: absolute;
+    left: 0;                  
+    right: 0;                
+    margin-left: auto;        
+    margin-right: auto; 
+    text-align: center; 
+    align-items: center;  
+    bottom: 0;
+    width: 70%;
+    height: 95vh;
+    background-image: url(img/Fundos/Quadrado/Quadrado-tamanho-grande.png);
+    border-radius: 30px 30px 0 0;
 }
 
 
@@ -120,7 +138,7 @@ body {
     bottom: 0;
     width: 70%;
     height: 95vh;
-    background-image: linear-gradient(to bottom, #DBDAB7, #AEB25E);
+    background-image: url(img/Fundos/Quadrado/Quadrado-tamanho-grande.png);
     border-radius: 30px 30px 0 0;
 }
 
@@ -149,7 +167,7 @@ body {
     bottom: 0;
     width: 70%;
     height: 95vh;
-    background-image: linear-gradient(to bottom, #DBDAB7, #AEB25E);
+    background-image: url(img/Fundos/Quadrado/Quadrado-tamanho-grande.png);
     border-radius: 30px 30px 0 0;
 }
 
@@ -159,4 +177,14 @@ body {
     margin-bottom: 30px;
     height: auto;
     border: none;
+}
+
+.container-sucesso{
+    border-radius: 30px;
+    background-image: url(img/Fundos/Sucesso/Sucesso-tamanho-grande.png);
+    color: #ffffff;
+    max-width: 55%;
+    margin-top: 10%;
+    min-height: 300px;
+    align-content: center;
 }

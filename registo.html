@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bem-vindo - RóiBIO</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styleLogin.css">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
@@ -24,9 +24,12 @@
                 <img src="img/logoPreto.png" alt="Logo RóiBIO">
                 
 
-                <form class="d-flex flex-column align-items-start ms-5" style="max-width: 50%;" onsubmit="validarRegisto(event)"> 
+                <div class="d-flex flex-row justify-content-between align-items-start w-100 px-4">
+
                 
-                    <h1 class="text-start" style="color:black; font-weight: bold;">REGISTO</h1>
+                <form class="d-flex flex-column align-items-start ms-5" style="width: 50%;" onsubmit="validarRegisto(event)"> 
+                
+                    <h1 class="text-start" style="color:black; font-weight: bold;">Registar</h1>
 
                 <div class="w-100 mt-5 mb-5">
                 <input type="text" class="form-control caixapersonalizada" id="InputNomeRegisto" placeholder="Nome" required></div>
@@ -42,9 +45,22 @@
 
                 <div class="w-100 mb-5">
                 <input type="password" class="form-control caixapersonalizada" id="InputConfPasswordRegisto" placeholder="Confirmar Palavra-passe" required></div>
-
-                <button type="submit" class="btn btn-submit rounded-5 mt-5" style="background-color:#434424">Iniciar Sessão</button>
+                
+                <div class="d-flex w-100 justify-content-center">
+                <button type="submit" class="btn btn-submit rounded-5 mt-5" style="background-color:#434424">Criar conta</button>
+                </div>
                 </form>
+
+                <div class="d-flex flex-column align-self-center align-items-center justify-content-center" style="width: 35%; margin-top: 40px;">
+
+                <p class="mb-3" style="color: black; font-weight: 500;">Já tem conta? <a href="login.html" style="color: black; font-weight: bold; text-decoration: underline;">Log-in</a></p>
+                <p class="mb-3 style="color: black; font-weight: bold;>Ou</p>
+                <button type="button Rounded-5" class="btn-loginext rounded-5 d-flex justify-content-center mb-2" onclick="fazerLoginGoogle()"> 
+                <span>Continuar com Google</span>
+                </button>
+                </div>
+
+                </div></div>
                 
 
 
@@ -98,7 +114,7 @@ function validarRegisto(event) {
                 
          
             
-                window.location.href = 'coconut.html'; 
+                window.location.href = 'Sucesso.html'; 
             }
         })
         .catch(erro => {
@@ -106,5 +122,25 @@ function validarRegisto(event) {
             alert('Erro ao ligar ao sistema de autenticação local.');
         });
 }
+
+  google.accounts.id.initialize({
+        client_id: "488497799658-k4s673jvnukbvrcd5hiqpaliio97kgad.apps.googleusercontent.com",
+        callback: tratarRespostaGoogle
+    });
+
+    function fazerLoginGoogle() {
+    google.accounts.id.prompt();
+}
+
+function tratarRespostaGoogle(resposta) {
+    const payload = JSON.parse(atob(resposta.credential.split('.')[1]));
+    
+    console.log("Utilizador autenticado com sucesso!");
+    console.log("Email vindo da Google: " + payload.email);
+    console.log("Nome do Utilizador: " + payload.name);
+    alert(`Bem-vindo à RóiBIO, ${payload.name}!`);
+    window.location.href = 'coconut.html';
+}
+  
 </script>
 </html>
