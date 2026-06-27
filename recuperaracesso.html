@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-vindo - RóiBIO</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styleLogin.css">
+    <link rel="stylesheet" href="bootstrapstyle.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+
+<body>
+
+    <div class="Menu-login" id="Menurecuperar">
+
+        <div class="btn-voltar mb-5 ms-3  position-absolute bottom-0 start-0" style="width: 250px;" id="btn-voltar">
+            <button class="btn" onclick="document.location='mainmenu.html'">Voltar</button>
+        </div>
+
+        <main class="Quadro-registo">
+            <div class="conteudo-painel" id="painel-formulario">
+                <img src="img/logoPreto.png" alt="Logo RóiBIO">
+
+
+
+                <div id="formulario">
+                    <h1 class="text-start ms-5 mb-5" style=" color:black; font-weight: bold;">Recuperar acesso</h1>
+                    <form class="recuperaremail d-flex flex-column align-items-center mx-auto" style="max-width: 50%;"
+                        onsubmit="validarEmail(event)">
+
+                        <div class="w-100 mb-3">
+                            <label for="InputEmailRecuperar" class="form-label">Endereço de correio eletrónico da sua
+                                conta</label>
+                            <input type="email" class="form-control caixapersonalizada" id="InputEmailRecuperar"
+                                placeholder="Email" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-submit rounded-5 mt-5"
+                            style="background-color:#434424">Recuperar acesso</button>
+                    </form>
+                </div>
+
+                <div class="SucessoRecuperar d-none" id="sucesso">
+                    <div class="container-sucesso flex-column align-items-center mx-auto">
+                        <h1 class="mb-5">Sucesso!</h1>
+                        <p>Um email com instruções para recuperar o acesso foi enviado</p>
+
+                    </div>
+                    <div class="btn-voltar mt-5 mb-1 mx-auto flex-column" style="width: 250px;">
+                        <button class="btn-voltarmenu btn rounded-5" onclick="document.location='mainmenu.html'">Voltar
+                            ao menu</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+<script>
+    function validarEmail(event) {
+        // 1. Impede o formulário de recarregar a página automaticamente
+        event.preventDefault();
+
+        // 2. Captura o email digitado e limpa espaços vazios
+        const emailIntroduzido = document.getElementById('InputEmailRecuperar').value.trim().toLowerCase();
+
+        // 3. Faz o pedido de leitura do ficheiro users.txt
+        fetch('users.txt')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Não foi possível aceder à base de dados de utilizadores.");
+                }
+                return response.text();
+            })
+            .then(texto => {
+                // Divide o ficheiro de texto linha por linha
+                const linhas = texto.split('\n');
+                let emailExiste = false;
+
+                for (let linha of linhas) {
+                    linha = linha.trim();
+                    if (linha === "") continue; // Ignora linhas em branco no ficheiro
+
+                    // Separa o email da password através da vírgula (formato: email,password)
+                    const partes = linha.split(',');
+                    const emailFicheiro = partes[0].trim().toLowerCase();
+
+                    // Se encontrar o email correspondente
+                    if (emailFicheiro === emailIntroduzido) {
+                        emailExiste = true;
+                        break; // Interrompe a pesquisa porque já encontrou
+                    }
+                }
+
+                // 4. Executa a troca de classes d-none conforme o resultado da pesquisa
+                if (emailExiste) {
+                    // Oculta o formulário e o botão voltar antigo
+                    document.getElementById('formulario').classList.add('d-none');
+                    document.getElementById('btn-voltar').classList.add('d-none');
+
+                    // Mostra a div de Sucesso
+                    document.getElementById('sucesso').classList.remove('d-none');
+                } else {
+                    // Se o email não existir na lista, exibe o aviso
+                    alert("O endereço de correio eletrónico introduzido não corresponde a nenhuma conta registada.");
+                }
+            })
+            .catch(error => {
+                console.error("Erro na validação:", error);
+                alert("Ocorreu um erro técnico ao processar o seu pedido. Por favor, tente novamente.");
+            });
+    }
+</script>
+</body>
+
+</html>

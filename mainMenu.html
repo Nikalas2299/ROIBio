@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-PT">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,173 +10,267 @@
     <link rel="stylesheet" href="bootstrapstyle.css">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
+
 <body>
 
-    <div class="Menu-login" id="Menulogin">  
+    <div class="Menu-login d-none d-lg-block" id="Menulogin">
 
         <div class="conteudo-painel" id="btns-login">
-        <aside class="sidebar-login">
-            <div class="sidebar-login-content">
-                <img class="logo-menu-login" src="img/logo.png" alt="Logo RóiBIO">
-                <p class="sidebar-login-text">Encontra tudo o que precisas para o teu roedor.</p>
-                
-                <div class="btns-login">
-                    <button class="btn" onclick="ativarLogin()">Log-in</button>
-                    <button class="btn" onclick="document.location='registo.html'">Registar</button>
+            <aside class="sidebar-login">
+                <div class="sidebar-login-content">
+                    <img class="logo-menu-login" src="img/logo.png" alt="Logo RóiBIO">
+                    <p class="sidebar-login-text">Encontra tudo o que precisas para o teu roedor.</p>
+
+                    <div class="btns-login">
+                        <button class="btn" onclick="ativarLogin()">Log-in</button>
+                        <button class="btn" onclick="document.location='registo.html'">Registar</button>
                     </div>
-            </div>
+                </div>
         </div>
-         <div class="btn-voltar d-none mb-5 ms-3  position-absolute bottom-0 start-0" style="width: 250px;" id="btn-voltar">
-                    <button class="btn" onclick="document.location='mainmenu.html'">Voltar</button></div>
+        <div class="btn-voltar d-none mb-5 ms-3  position-absolute bottom-0 start-0" style="width: 250px;"
+            id="btn-voltar">
+            <button class="btn" onclick="document.location='mainmenu.html'">Voltar</button>
+        </div>
         </aside>
 
         <main class="Quadro-login">
             <div class="conteudo-painel" id="painel-inicial">
-                
-                <img class="photo-login-1" src="img/photo-login-1.webp" alt="Foto 1"> 
-                <img class="photo-login-2" src="img/photo-login-2.webp" alt="Foto 2"> 
-                </div>
-               
 
-                <div class="conteudo-painel d-none" id="painel-formulario">
+                <img class="photo-login-1" src="img/photo-login-1.webp" alt="Foto 1">
+                <img class="photo-login-2" src="img/photo-login-2.webp" alt="Foto 2">
+            </div>
+
+
+            <div class="conteudo-painel d-none" id="painel-formulario">
                 <img src="img/logoPreto.png" alt="Logo RóiBIO">
 
                 <h1 class="text-start ms-5" style=" color:black; font-weight: bold;">Login</h1>
-                <form class="d-flex flex-column align-items-center mx-auto" style="max-width: 50%;" onsubmit="validarLogin(event)"> 
-                    
-                <div class="w-100 mb-3">
-                <label for="InputEmailLogin" class="form-label">Email</label>
-                <input type="email" class="form-control caixapersonalizada" id="InputEmailLogin">
-                </div>
+                <form class="d-flex flex-column align-items-center mx-auto" style="max-width: 50%;"
+                    onsubmit="validarLogin(event)">
 
-                <div class="w-100 mb-3">
-                <label for="InputPasswordLogin" class="form-label">Palavra-passe</label>
-                <input type="password" class="form-control caixapersonalizada" id="InputPasswordLogin">
-                </div>
+                    <div class="w-100 mb-3">
+                        <label for="InputEmailLogin" class="form-label">Email</label>
+                        <input type="email" class="form-control caixapersonalizada" id="InputEmailLogin">
+                    </div>
 
-                <div class="mb-3">
-                <a href="#" style="font-weight: bold; text-decoration: underline; color: black;">Esqueceu-se da Palavra-passe</a>
-            
-                </div>
+                    <div class="w-100 mb-3">
+                        <label for="InputPasswordLogin" class="form-label">Palavra-passe</label>
+                        <input type="password" class="form-control caixapersonalizada" id="InputPasswordLogin">
+                    </div>
+
+                    <div class="mb-3">
+                        <a href="#" style="font-weight: bold; text-decoration: underline; color: black;">Esqueceu-se da
+                            Palavra-passe</a>
+
+                    </div>
                     <p class="text fw-bold mt-5 mb-3">OU</p>
-                <button type="button" class="btn-loginext rounded-5 d-flex align-items-center justify-content-center mb-2" onclick="fazerLoginGoogle()"> 
-                <span>Continuar com Google</span>
-                </button>
+                    <button type="button"
+                        class="btn-loginext rounded-5 d-flex align-items-center justify-content-center mb-2"
+                        onclick="fazerLoginGoogle()">
+                        <span>Continuar com Google</span>
+                    </button>
 
-                <button type="submit" class="btn btn-submit rounded-5 mt-5" style="background-color:#434424">Iniciar Sessão</button>
+                    <button type="submit" class="btn btn-submit rounded-5 mt-5" style="background-color:#434424">Iniciar
+                        Sessão</button>
 
-</form>
+                </form>
             </div>
-            
+
         </main>
     </div>
-    </div>  
-    </body>
-    <script>
-
-              function ativarLogin() {
-            
-            document.getElementById('Menulogin').classList.add('active-login');
-            
-            setTimeout(() => {
-                document.getElementById('painel-inicial').classList.add('d-none');
-                document.getElementById('btns-login').classList.add('d-none');
-                document.getElementById('painel-formulario').classList.remove('d-none');
-                document.getElementById('btn-voltar').classList.remove('d-none');
-            }, 0); 
-        }
+    </div>
 
 
+<div class="Menu-login d-block d-lg-none" id="Menulogin-sm">
 
-        window.onload = function () {
+        <div class="conteudo-painel" id="btns-login">
+            <div class="upbar-login">
+                <div class="upbar-login-content">
+                    <img class="logo-menu-login" src="img/logoPreto.png" alt="Logo RóiBIO">
+                    <p class="upbar-login-text">Encontra tudo o que precisas para o teu roedor.</p>
+                </div>
+        </div>
+        <div class="btn-voltar d-none mb-5 ms-3  position-absolute bottom-0 start-0" style="width: 250px;"
+            id="btn-voltar">
+            <button class="btn" onclick="document.location='mainmenu.html'">Voltar</button>
+        </div>
+        </aside>
 
-    google.accounts.id.initialize({
-        client_id: "488497799658-k4s673jvnukbvrcd5hiqpaliio97kgad.apps.googleusercontent.com",
-        callback: tratarRespostaGoogle
-    });
+        <main class="Quadro-login">
+            <div class="conteudo-painel" id="painel-inicial-sm">
+
+       
+            </div>
+
+
+            <div class="conteudo-painel d-none" id="painel-formulario-sm">
+                <img src="img/logoPreto.png" alt="Logo RóiBIO">
+
+                <h1 class="text-start ms-5" style=" color:black; font-weight: bold;">Login</h1>
+                <form class="d-flex flex-column align-items-center mx-auto" style="max-width: 50%;"
+                    onsubmit="validarLogin(event)">
+
+                    <div class="w-100 mb-3">
+                        <label for="InputEmailLogin" class="form-label">Email</label>
+                        <input type="email" class="form-control caixapersonalizada" id="InputEmailLogin-sm">
+                    </div>
+
+                    <div class="w-100 mb-3">
+                        <label for="InputPasswordLogin" class="form-label">Palavra-passe</label>
+                        <input type="password" class="form-control caixapersonalizada" id="InputPasswordLogin-sm">
+                    </div>
+
+                    <div class="mb-3">
+                        <a href="#" style="font-weight: bold; text-decoration: underline; color: black;">Esqueceu-se da
+                            Palavra-passe</a>
+
+                    </div>
+                    <p class="text fw-bold mt-5 mb-3">OU</p>
+                    <button type="button"
+                        class="btn-loginext rounded-5 d-flex align-items-center justify-content-center mb-2"
+                        onclick="fazerLoginGoogle()">
+                        <span>Continuar com Google</span>
+                    </button>
+
+                    <button type="submit" class="btn btn-submit rounded-5 mt-5" style="background-color:#434424">Iniciar
+                        Sessão</button>
+
+                </form>
+            </div>
+            </div>
+
+              <div class="conteudo-painel" id="btns-login-sm">
+            <div class="underbar-login">
+                <div class="underbar-login-content">
+                    <div class="btns-login-sm">
+                        <button class="btn" onclick="ativarLoginSM()">Log-in</button>
+                        <button class="btn" onclick="document.location='registo.html'">Registar</button>
+                    </div>
+                
+            </div>
+        </div>
+
+        </main>
+    </div>
+    </div>
+
+</body>
+<script>
+
+    function ativarLogin() {
+
+        document.getElementById('Menulogin').classList.add('active-login');
+
+        setTimeout(() => {
+            document.getElementById('painel-inicial').classList.add('d-none');
+            document.getElementById('btns-login').classList.add('d-none');
+            document.getElementById('painel-formulario').classList.remove('d-none');
+            document.getElementById('btn-voltar').classList.remove('d-none');
+        }, 0);
+    }
+
+    function ativarLoginSM() {
+    document.getElementById('Menulogin-sm').classList.add('active-login');
+
+    setTimeout(() => {
+        document.getElementById('painel-inicial-sm').classList.add('d-none');
+        document.getElementById('underbar-botoes-sm').classList.add('d-none'); // Esconde os botões "Log-in/Registar" de baixo
+        document.getElementById('painel-formulario-sm').classList.remove('d-none'); // Mostra o form de login
+        document.getElementById('btn-voltar-sm').classList.remove('d-none'); // Mostra o voltar
+    }, 0);
 }
+
+
+
+    window.onload = function () {
+
+        google.accounts.id.initialize({
+            client_id: "488497799658-k4s673jvnukbvrcd5hiqpaliio97kgad.apps.googleusercontent.com",
+            callback: tratarRespostaGoogle
+        });
+    }
 
     function fazerLoginGoogle() {
-    google.accounts.id.prompt();
-}
-
-function tratarRespostaGoogle(resposta) {
-    const payload = JSON.parse(atob(resposta.credential.split('.')[1]));
-    
-    console.log("Utilizador autenticado com sucesso!");
-    console.log("Email vindo da Google: " + payload.email);
-    console.log("Nome do Utilizador: " + payload.name);
-    alert(`Bem-vindo à RóiBIO, ${payload.name}!`);
-    window.location.href = 'coconut.html';
-}
-  
-
-        function validarLogin(event) {
-
-    event.preventDefault();
-
-            let utilizadorEncontrado = false;
-            let precisaDeAutenticacaoExterna = false;
-
-    for (let i = 0; i < linhas.length; i++) {
-    const dados = linhas[i].trim().split(',');
-    const emailDoFicheiro = dados[0];
-    const passwordDoFicheiro = dados[1];
-
-    if (inputEL === emailDoFicheiro) {
-        utilizadorEncontrado = true;
-        
-
-        if (passwordDoFicheiro === 'GOOGLE_AUTH') {
-            precisaDeAutenticacaoExterna = true;
-        } else if (inputPL === passwordDoFicheiro) {
-            loginSucesso = true;
-        }
-        break; 
+        google.accounts.id.prompt();
     }
-}
 
-    fetch('users.txt')
-        .then(resposta => resposta.text()) // converte os dados recebidos em texto
-        .then(texto => {
-           
-            const linhas = texto.split('\n'); // \n cria os arrays divididos em linhas 
-            let loginSucesso = false;
+    function tratarRespostaGoogle(resposta) {
+        const payload = JSON.parse(atob(resposta.credential.split('.')[1]));
 
-  
-            for (let i = 0; i < linhas.length; i++) {
-     
-                const dados = linhas[i].trim().split(',');
-                const emailDoFicheiro = dados[0];
-                const passwordDoFicheiro = dados[1];
+        console.log("Utilizador autenticado com sucesso!");
+        console.log("Email vindo da Google: " + payload.email);
+        console.log("Nome do Utilizador: " + payload.name);
+        alert(`Bem-vindo à RóiBIO, ${payload.name}!`);
+        window.location.href = 'coconut.html';
+    }
 
-            
-                if (inputEL === emailDoFicheiro && inputPL === passwordDoFicheiro) {
+
+    function validarLogin(event) {
+
+        event.preventDefault();
+
+        let utilizadorEncontrado = false;
+        let precisaDeAutenticacaoExterna = false;
+
+        for (let i = 0; i < linhas.length; i++) {
+            const dados = linhas[i].trim().split(',');
+            const emailDoFicheiro = dados[0];
+            const passwordDoFicheiro = dados[1];
+
+            if (inputEL === emailDoFicheiro) {
+                utilizadorEncontrado = true;
+
+
+                if (passwordDoFicheiro === 'GOOGLE_AUTH') {
+                    precisaDeAutenticacaoExterna = true;
+                } else if (inputPL === passwordDoFicheiro) {
                     loginSucesso = true;
-                    break;
                 }
+                break;
             }
+        }
 
-           if (loginSucesso) {
-             alert('Login efetuado com sucesso! Bem-vindo à RóiBIO.');
-             window.location.href = 'coconut.html';
+        fetch('users.txt')
+            .then(resposta => resposta.text()) // converte os dados recebidos em texto
+            .then(texto => {
 
-            } else if (precisaDeAutenticacaoExterna) {
+                const linhas = texto.split('\n'); // \n cria os arrays divididos em linhas 
+                let loginSucesso = false;
 
-             alert('Esta conta foi criada através de um sistema de autenticação externo (Google). Por favor, utilize o botão "Continuar com Google" para entrar.');
-            } else {
 
-             alert('Email ou Palavra-passe incorretos. Tente novamente.');
-            }
-        })
-        .catch(erro => {
-            console.error('Erro ao ler o ficheiro de utilizadores:', erro);
-            alert('Erro no sistema de autenticação.');
-        });
-}
-    </script>
+                for (let i = 0; i < linhas.length; i++) {
 
-    <script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/pt_PT/appleid.auth.js"></script>
+                    const dados = linhas[i].trim().split(',');
+                    const emailDoFicheiro = dados[0];
+                    const passwordDoFicheiro = dados[1];
+
+
+                    if (inputEL === emailDoFicheiro && inputPL === passwordDoFicheiro) {
+                        loginSucesso = true;
+                        break;
+                    }
+                }
+
+                if (loginSucesso) {
+                    alert('Login efetuado com sucesso! Bem-vindo à RóiBIO.');
+                    window.location.href = 'coconut.html';
+
+                } else if (precisaDeAutenticacaoExterna) {
+
+                    alert('Esta conta foi criada através de um sistema de autenticação externo (Google). Por favor, utilize o botão "Continuar com Google" para entrar.');
+                } else {
+
+                    alert('Email ou Palavra-passe incorretos. Tente novamente.');
+                }
+            })
+            .catch(erro => {
+                console.error('Erro ao ler o ficheiro de utilizadores:', erro);
+                alert('Erro no sistema de autenticação.');
+            });
+    }
+</script>
+
+
 
 
 </html>

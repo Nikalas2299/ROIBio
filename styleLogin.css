@@ -13,13 +13,13 @@ body {
 .sidebar-login {
     display: block;
     position: fixed;
-    height: 100%; 
+    height: 100%;
     width: 250px;
     top: 25%;
     left: 0;
     padding-top: 150px;
     margin-left: 80px;
-    
+
 }
 
 .sidebar-login-text {
@@ -47,7 +47,7 @@ body {
     width: 100%;
     max-width: 350px;
     padding: 12px 20px;
-    background-color: #5b6649; 
+    background-color: #5b6649;
     color: #ffffff;
     text-align: center;
     text-decoration: none;
@@ -61,7 +61,7 @@ body {
     width: 100%;
     max-width: 350px;
     padding: 12px 20px;
-    background-color: #ffffff; 
+    background-color: #ffffff;
     color: #000000;
     text-decoration: none;
     font-size: 1.1rem;
@@ -74,7 +74,7 @@ body {
 }
 
 .Quadro-login {
-    display: block; 
+    display: block;
     position: absolute;
     background-image: url(img/Fundos/Quadrado/Quadrado-tamanho-grande.png);
     width: 75%;
@@ -84,15 +84,15 @@ body {
     bottom: 0;
 }
 
-.Quadro-login-page{
-    display: block; 
+.Quadro-login-page {
+    display: block;
     position: absolute;
-    left: 0;                  
-    right: 0;                
-    margin-left: auto;        
-    margin-right: auto; 
-    text-align: center; 
-    align-items: center;  
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    align-items: center;
     bottom: 0;
     width: 70%;
     height: 95vh;
@@ -104,19 +104,19 @@ body {
 .Quadro-login img {
     position: absolute;
     max-width: 500px;
-    height: auto; 
+    height: auto;
     border-radius: 25px;
     border-style: solid;
     border-color: #ffffff;
 }
 
 .photo-login-1 {
-    top: 100px;  
+    top: 100px;
     left: 150px;
 }
 
 .photo-login-2 {
-    bottom: 100px;  
+    bottom: 100px;
     right: 150px;
 }
 
@@ -126,15 +126,15 @@ body {
     max-width: 250px;
 }
 
-.active-login .Quadro-login{
-    display: block; 
+.active-login .Quadro-login {
+    display: block;
     position: absolute;
-    left: 0;                  
-    right: 0;                
-    margin-left: auto;        
-    margin-right: auto; 
-    text-align: center; 
-    align-items: center;  
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    align-items: center;
     bottom: 0;
     width: 70%;
     height: 95vh;
@@ -150,20 +150,20 @@ body {
     border: none;
 }
 
-.caixapersonalizada{
+.caixapersonalizada {
     border-radius: 20px;
     box-shadow: none;
 }
 
-.Quadro-registo{
-    display: block; 
+.Quadro-registo {
+    display: block;
     position: absolute;
-    left: 0;                  
-    right: 0;                
-    margin-left: auto;        
-    margin-right: auto; 
-    text-align: center; 
-    align-items: center;  
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    align-items: center;
     bottom: 0;
     width: 70%;
     height: 95vh;
@@ -179,12 +179,89 @@ body {
     border: none;
 }
 
-.container-sucesso{
+.container-sucesso {
     border-radius: 30px;
     background-image: url(img/Fundos/Sucesso/Sucesso-tamanho-grande.png);
     color: #ffffff;
-    max-width: 55%;
+    max-width: 536px;
     margin-top: 10%;
     min-height: 300px;
     align-content: center;
 }
+
+
+@media screen and (max-width: 991px) {
+    body {
+        flex-direction: column;
+        justify-content: flex-start; /* Alinha tudo a começar do topo */
+        overflow-y: auto; /* Permite scroll se os elementos excederem a altura */
+        padding: 0;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .Menu-login {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between; 
+        min-height: 100vh;
+        width: 100%;
+    }
+
+    .upbar-login {
+        position: relative;
+        width: 100%;
+        height: auto;
+        top: 0;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        color: #fffff1;
+        text-shadow: -2px -2px 0 #3a3a27, 2px -2px 0 #3a3a27, -2px 2px 0 #3a3a27, 2px 2px 0 #3a3a27;
+        font-weight: bold;
+        font-size: large;
+    }
+
+    .logo-menu-login {
+        position: relative;
+        margin-bottom: 15px;
+    }
+
+    .upbar-login-text {
+        position: relative;
+        margin-bottom: 20px;
+        margin-left: 3px;
+        margin-right: 3px;
+    }
+
+    .Quadro-login, .Quadro-login-page {
+        position: relative;
+        width: 100%;
+        height: auto;
+        min-height: 50vh;
+        border-radius: 30px 30px 0 0;
+        padding: 30px 20px;
+        margin-top: auto;
+        right: unset;
+        bottom: unset;
+    }
+
+    .underbar-login {
+        position: relative;
+        width: 100%;
+        height: auto;
+        bottom: 0;
+        margin: 0;
+        padding: 20px 0;
+    }
+
+    .btns-login-sm{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    align-items: center;
+    }
+}
+
