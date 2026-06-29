@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    font-family: 'Montserrat', sans-serif;
+    margin: 15px;
+}
+
+
+/* Classes */
+
+.bg-gradient-droibio {
+    background-image: linear-gradient(180deg, #DBDAB7 0%, #AEB25E 100%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    padding-top: 75px;
+}
+
+/*Botão Ver Produto*/
+.btn-dbotaoverproduto {
+    background-color: #434424;
+    color: #ffffff;
+    font-size: 0.95rem;
+    border: 2px solid #434424;
+    border-radius: 25px;
+    transition: all 0.25s ease-in-out; /* Faz com que as animações fiquem suaves */
+    padding: 5px 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.btn-dbotaoverproduto:hover {
+    background-color: #AEB25E;
+    color: black;
+    font-weight: bold;
+    transform: translateY(-2px); /* Opcional */
+    box-shadow: 0px 6px 20px rgba(174, 178, 94, 0.4); /* Opcional */
+}
+
+.btn-dbotaoverproduto:active {
+    background-color: #8C904B;
+    border-color: #8C904B;
+    color: #000000;
+    transform: translateY(0.5px); /* O botão desce em vez de subir */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25); /* A sombra encolhe e fica mais escura/justa */
+    transition: all 0.5s ease-in-out;
+}
+
+
+
+/* Imagens Arredondas dentro dos Cards */
+.img-dimagens {
+    border-radius: 30px;
+}
+
+
+
+
+
+
+

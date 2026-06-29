@@ -200,7 +200,7 @@ google.accounts.id.renderButton(document.getElementById('google-btn-mobile'), co
         console.log("Email vindo da Google: " + payload.email);
         console.log("Nome do Utilizador: " + payload.name);
         alert(`Bem-vindo à RóiBIO, ${payload.name}!`);
-        window.location.href = 'coconut.html';
+        window.location.href = 'index.html';
     }
 
 
@@ -240,7 +240,7 @@ google.accounts.id.renderButton(document.getElementById('google-btn-mobile'), co
             // 4. Executa os alertas com base nos resultados do loop
             if (loginSucesso) {
                 alert('Login efetuado com sucesso! Bem-vindo à RóiBIO.');
-                window.location.href = 'coconut.html';
+                window.location.href = 'index.html';
             } else if (precisaDeAutenticacaoExterna) {
                 alert('Esta conta foi criada através de um sistema de autenticação externo (Google). Por favor, utilize o botão "Continuar com Google" para entrar.');
             } else {

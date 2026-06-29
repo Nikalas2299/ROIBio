@@ -123,8 +123,7 @@ window.onload = function () {
         callback: tratarRespostaGoogle
     });
 
-    // Desenha automaticamente o botão oficial da Google nos dois ecrãs
-    // Isto ignora o cooldown e funciona sempre ao clicar!
+
     const configBotao = { 
     theme: "outline", 
     size: "large", 
@@ -135,7 +134,7 @@ window.onload = function () {
 
 google.accounts.id.renderButton(document.getElementById('google-btn-desktop'), configBotao);
 google.accounts.id.renderButton(document.getElementById('google-btn-mobile'), configBotao);
-    // Opcional: Tenta abrir também o One Tap flutuante automaticamente
+
     google.accounts.id.prompt();
 }
 
@@ -146,47 +145,47 @@ google.accounts.id.renderButton(document.getElementById('google-btn-mobile'), co
         console.log("Email vindo da Google: " + payload.email);
         console.log("Nome do Utilizador: " + payload.name);
         alert(`Bem-vindo à RóiBIO, ${payload.name}!`);
-        window.location.href = 'coconut.html';
+        window.location.href = 'index.html';
     }
 
 
     function validarLogin(event) {
     event.preventDefault();
 
-    // 1. Captura os dados digitados (tenta o campo normal, se estiver vazio tenta o -sm)
+    
     const inputEL = document.getElementById('InputEmailLogin').value || document.getElementById('InputEmailLogin-sm').value;
     const inputPL = document.getElementById('InputPasswordLogin').value || document.getElementById('InputPasswordLogin-sm').value;
 
     let precisaDeAutenticacaoExterna = false;
     let loginSucesso = false;
 
-    // 2. Faz a leitura do ficheiro de utilizadores
+  
     fetch('users.txt')
         .then(resposta => resposta.text())
         .then(texto => {
             const linhas = texto.split('\n');
 
-            // 3. Processa as linhas dentro do fetch
+
             for (let i = 0; i < linhas.length; i++) {
                 const dados = linhas[i].trim().split(',');
                 const emailDoFicheiro = dados[0];
                 const passwordDoFicheiro = dados[1];
 
-                // Se o email coincidir, avalia a password
+       
                 if (inputEL === emailDoFicheiro) {
                     if (passwordDoFicheiro === 'GOOGLE_AUTH') {
                         precisaDeAutenticacaoExterna = true;
                     } else if (inputPL === passwordDoFicheiro) {
                         loginSucesso = true;
                     }
-                    break; // Utilizador encontrado, não precisa de continuar o loop
+                    break; 
                 }
             }
 
-            // 4. Executa os alertas com base nos resultados do loop
+     
             if (loginSucesso) {
                 alert('Login efetuado com sucesso! Bem-vindo à RóiBIO.');
-                window.location.href = 'coconut.html';
+                window.location.href = 'index.html';
             } else if (precisaDeAutenticacaoExterna) {
                 alert('Esta conta foi criada através de um sistema de autenticação externo (Google). Por favor, utilize o botão "Continuar com Google" para entrar.');
             } else {
