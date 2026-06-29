@@ -13,7 +13,7 @@
 <body>
 
 
-    <div class="register-container" id="registo">
+    <div class="register-container d-none d-lg-block">
 
         <main class="Quadro-registo">
 
@@ -26,12 +26,33 @@
 
             </div>
             <div class="btn-voltar mt-5 mb-1 mx-auto flex-column" style="width: 250px;">
-                <button class="btn rounded-5" onclick="document.location='mainmenu.html'">Voltar ao menu</button>
+                <button class="btn rounded-5" style="background-color:#434424" onclick="document.location='mainmenu.html'">Voltar ao menu</button>
             </div>
-        </main>
+        
+    </div>
+    </main>
 
 
 
+    <div class="register-container-sm d-block d-lg-none w-100">
+
+         <div class="logotopo mt-4 d-flex justify-content-center w-100 mb-4">
+            <img src="img/logoPreto.png" alt="Logo RóiBIO" style="max-width: 180px;">
+        </div>
+
+        <main class="Quadro-registo-sm">
+                <div class="container-sucesso flex-column align-items-center mx-auto mb-5">
+                <h1 class="mb-5">Bem-vindo à familia RoiBio!</h1>
+                <p>Agora podes voltar à pagina inicial e fazer Login.</p>
+                </div>
+                <div class="d-flex justify-content-center w-100">
+                    <button class="btn rounded-5" style="background-color:#434424;"
+                        onclick="document.location='mainmenu.html'">Voltar ao menu</button>
+                </div>
+        
+    </div>
+</div>
+    </main>
 
 
 </body>

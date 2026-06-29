@@ -7,13 +7,12 @@
     <title>Bem-vindo - RóiBIO</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styleLogin.css">
-    <link rel="stylesheet" href="bootstrapstyle.css">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 
 <body>
 
-    <div class="Menu-login" id="Menulogin">
+    <div class="Menu-login d-none d-lg-block" id="Menulogin">
 
         <div class="conteudo-painel" id="btns-login">
             <aside class="sidebar-login">
@@ -63,20 +62,82 @@
         </main>
     </div>
     </div>
+
+
+    <div class="Menu-login d-block d-lg-none" id="Menulogin-sm">
+
+                <div class="logotopo mt-3 d-flex justify-content-center w-100 mb-2" id="logotopo">
+                <img src="img/logoPreto.png" alt="Logo RóiBIO">
+                    </div>
+            
+            
+                <main class="Quadro-login-1">
+                    
+
+
+                <div class="conteudo-painel" id="painel-formulario-sm">
+                    
+
+                    <h1 class="text mb-2" style=" color:black; font-weight: bold;">Login</h1>
+                    <form class="d-flex flex-column align-items-center mx-auto" style="max-width: 90%;"
+                        onsubmit="validarLogin(event)">
+
+                        <div class="w-100 mb-3">
+                            <label for="InputEmailLogin" class="form-label">Email</label>
+                            <input type="email" class="form-control caixapersonalizada" id="InputEmailLogin-sm">
+                        </div>
+
+                        <div class="w-100 mb-3">
+                            <label for="InputPasswordLogin" class="form-label">Palavra-passe</label>
+                            <input type="password" class="form-control caixapersonalizada" id="InputPasswordLogin-sm">
+                        </div>
+
+                        <div class="mb-3">
+                            <a href="recuperaracesso.html" style="font-weight: bold; text-decoration: underline; color: black;">Esqueceu-se da Palavra-passe</a>
+
+                        </div>
+                        <p class="text fw-bold mt-5 mb-3">OU</p>
+                        <div id="google-btn-mobile" class="mb-5"></div>
+
+                        <button type="submit" class="btn btn-submit rounded-5 mt-5"
+                            style="background-color:#434424">Iniciar Sessão</button>
+                        
+                        <button class="btn rounded-5 mt-3" style="background-color:#434424" onclick="document.location='mainmenu.html'">Voltar</button>
+
+                    </form>
+                </div>
+                    </main>
+          
+    
+    </div>
+
+
+
 </body>
 <script>
 
-    window.onload = function () {
 
-        google.accounts.id.initialize({
-            client_id: "488497799658-k4s673jvnukbvrcd5hiqpaliio97kgad.apps.googleusercontent.com",
-            callback: tratarRespostaGoogle
-        });
-    }
+window.onload = function () {
+    google.accounts.id.initialize({
+        client_id: "488497799658-k4s673jvnukbvrcd5hiqpaliio97kgad.apps.googleusercontent.com",
+        callback: tratarRespostaGoogle
+    });
 
-    function fazerLoginGoogle() {
-        google.accounts.id.prompt();
-    }
+    // Desenha automaticamente o botão oficial da Google nos dois ecrãs
+    // Isto ignora o cooldown e funciona sempre ao clicar!
+    const configBotao = { 
+    theme: "outline", 
+    size: "large", 
+    shape: "pill",     
+    width: "280",       
+    locale: "pt-PT"    
+};
+
+google.accounts.id.renderButton(document.getElementById('google-btn-desktop'), configBotao);
+google.accounts.id.renderButton(document.getElementById('google-btn-mobile'), configBotao);
+    // Opcional: Tenta abrir também o One Tap flutuante automaticamente
+    google.accounts.id.prompt();
+}
 
     function tratarRespostaGoogle(resposta) {
         const payload = JSON.parse(atob(resposta.credential.split('.')[1]));
@@ -90,71 +151,51 @@
 
 
     function validarLogin(event) {
+    event.preventDefault();
 
-        event.preventDefault();
+    // 1. Captura os dados digitados (tenta o campo normal, se estiver vazio tenta o -sm)
+    const inputEL = document.getElementById('InputEmailLogin').value || document.getElementById('InputEmailLogin-sm').value;
+    const inputPL = document.getElementById('InputPasswordLogin').value || document.getElementById('InputPasswordLogin-sm').value;
 
-        let utilizadorEncontrado = false;
-        let precisaDeAutenticacaoExterna = false;
+    let precisaDeAutenticacaoExterna = false;
+    let loginSucesso = false;
 
-        for (let i = 0; i < linhas.length; i++) {
-            const dados = linhas[i].trim().split(',');
-            const emailDoFicheiro = dados[0];
-            const passwordDoFicheiro = dados[1];
+    // 2. Faz a leitura do ficheiro de utilizadores
+    fetch('users.txt')
+        .then(resposta => resposta.text())
+        .then(texto => {
+            const linhas = texto.split('\n');
 
-            if (inputEL === emailDoFicheiro) {
-                utilizadorEncontrado = true;
+            // 3. Processa as linhas dentro do fetch
+            for (let i = 0; i < linhas.length; i++) {
+                const dados = linhas[i].trim().split(',');
+                const emailDoFicheiro = dados[0];
+                const passwordDoFicheiro = dados[1];
 
-
-                if (passwordDoFicheiro === 'GOOGLE_AUTH') {
-                    precisaDeAutenticacaoExterna = true;
-                } else if (inputPL === passwordDoFicheiro) {
-                    loginSucesso = true;
-                }
-                break;
-            }
-        }
-
-        fetch('users.txt')
-            .then(resposta => resposta.text()) // converte os dados recebidos em texto
-            .then(texto => {
-
-                const linhas = texto.split('\n'); // \n cria os arrays divididos em linhas 
-                let loginSucesso = false;
-
-
-                for (let i = 0; i < linhas.length; i++) {
-
-                    const dados = linhas[i].trim().split(',');
-                    const emailDoFicheiro = dados[0];
-                    const passwordDoFicheiro = dados[1];
-
-
-                    if (inputEL === emailDoFicheiro && inputPL === passwordDoFicheiro) {
+                // Se o email coincidir, avalia a password
+                if (inputEL === emailDoFicheiro) {
+                    if (passwordDoFicheiro === 'GOOGLE_AUTH') {
+                        precisaDeAutenticacaoExterna = true;
+                    } else if (inputPL === passwordDoFicheiro) {
                         loginSucesso = true;
-                        break;
                     }
+                    break; // Utilizador encontrado, não precisa de continuar o loop
                 }
+            }
 
-                if (loginSucesso) {
-                    alert('Login efetuado com sucesso! Bem-vindo à RóiBIO.');
-                    window.location.href = 'coconut.html';
-
-                } else if (precisaDeAutenticacaoExterna) {
-
-                    alert('Esta conta foi criada através de um sistema de autenticação externo (Google). Por favor, utilize o botão "Continuar com Google" para entrar.');
-                } else {
-
-                    alert('Email ou Palavra-passe incorretos. Tente novamente.');
-                }
-            })
-            .catch(erro => {
-                console.error('Erro ao ler o ficheiro de utilizadores:', erro);
-                alert('Erro no sistema de autenticação.');
-            });
-    }
+            // 4. Executa os alertas com base nos resultados do loop
+            if (loginSucesso) {
+                alert('Login efetuado com sucesso! Bem-vindo à RóiBIO.');
+                window.location.href = 'coconut.html';
+            } else if (precisaDeAutenticacaoExterna) {
+                alert('Esta conta foi criada através de um sistema de autenticação externo (Google). Por favor, utilize o botão "Continuar com Google" para entrar.');
+            } else {
+                alert('Email ou Palavra-passe incorretos. Tente novamente.');
+            }
+        })
+        .catch(erro => {
+            console.error('Erro ao ler o ficheiro de utilizadores:', erro);
+            alert('Erro no sistema de autenticação.');
+        });
+}
 </script>
-
-
-
-
-</html>
